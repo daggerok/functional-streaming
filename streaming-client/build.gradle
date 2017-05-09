@@ -1,0 +1,37 @@
+plugins {
+    id "cn.bestwu.propdeps" version '0.0.10'
+    id 'cn.bestwu.propdeps-idea' version '0.0.10'
+    id 'cn.bestwu.propdeps-maven' version '0.0.10'
+    id 'cn.bestwu.propdeps-eclipse' version '0.0.10'
+    id 'org.springframework.boot' version '1.5.3.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.2.RELEASE'
+}
+
+version '0.0.1'
+group 'daggerok'
+sourceCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenCentral()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+}
+
+springBoot {
+    executable = true
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.boot:spring-boot-dependencies:2.0.0.BUILD-SNAPSHOT'
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Finchley.BUILD-SNAPSHOT'
+    }
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-webflux')
+    runtime('org.springframework.boot:spring-boot-devtools')
+    compileOnly('org.springframework.boot:spring-boot-configuration-processor')
+    compileOnly('org.projectlombok:lombok')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}

@@ -1,0 +1,29 @@
+plugins {
+    id 'idea'
+}
+
+// inherit tasks from projects
+def projectNames = [
+        'streaming-service',
+        'streaming-client'
+]
+
+// gradle clean build
+['clean', 'assemble', 'check', 'test', 'build'].each { taskName ->
+    tasks.create(taskName) { task ->
+        projectNames.each { projectName ->
+            dependsOn gradle.includedBuild(projectName).task(":$taskName")
+        }
+    }
+}
+
+// gradle bootRun-service bootRun-client
+projectNames.each { projectName ->
+
+    def bootRunTaskName = 'bootRun'
+    def taskName = projectName.replace('streaming', bootRunTaskName)
+
+    tasks.create(taskName) { task ->
+        dependsOn gradle.includedBuild(projectName).task(":$bootRunTaskName")
+    }
+}

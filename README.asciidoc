@@ -1,0 +1,9 @@
+= functional-streaming image:https://travis-ci.org/daggerok/functional-streaming.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/functional-streaming"]
+
+spring cloud streaming
+
+[source,bash]
+----
+gradle bootRun-service
+gradle bootRun-client
+----
