@@ -2,8 +2,19 @@
 
 spring cloud streaming
 
+add kafka (using docker)
+
 [source,bash]
-----
+gradle composeUp
+gradle composeDown
+
+or run integration tests with kafka
+
+[source,bash]
+gradle integrationTests
+
+gradle tasks inheritance
+
+[source,bash]
 gradle bootRun-service
 gradle bootRun-client
-----

@@ -1,5 +1,5 @@
 ### IntelliJ IDEA ###
-.gradle/
+.gradle
 gradle*
 .idea
 *.iws
@@ -23,3 +23,6 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+### exclusions ###
+!gradle-*.properties
