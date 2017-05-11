@@ -4,7 +4,7 @@
 
 see https://github.com/daggerok/functional-streaming/tree/master/streaming-kafka-reactive-processor[streaming-kafka-reactive-processor] and https://github.com/daggerok/functional-streaming/tree/master/streaming-kafka-reactive-consumer[streaming-kafka-reactive-consumer] projects
 
-in our messaging pipeline we can use Mono / Flux from reactor project, which makes developing streaming cloud native application more exiting!
+in our messaging pipeline we can use Mono / Flux from reactor project, which makes developing streaming cloud native application more exciting!
 
 [source,java]
 ----
