@@ -1,5 +1,11 @@
 = functional-streaming image:https://travis-ci.org/daggerok/functional-streaming.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/functional-streaming"]
 
+== functional streaming using spring-cloud-reactive-streams
+
+see https://github.com/daggerok/functional-streaming/tree/master/streaming-kafka-reactive-processor[streaming-kafka-reactive-processor] and https://github.com/daggerok/functional-streaming/tree/master/streaming-kafka-reactive-consumer[streaming-kafka-reactive-consumer] projects
+
+== build, run, clean
+
 1. bootstrap your message broker
 2. start
 
