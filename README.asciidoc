@@ -1,12 +1,29 @@
 = functional-streaming image:https://travis-ci.org/daggerok/functional-streaming.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/functional-streaming"]
 
-spring cloud streaming
+1. bootstrap your message broker
+2. start
 
-add kafka (using docker)
+* streaming-kafka-producer
+* streaming-kafka-processor
+* streaming-kafka-reactive-producer
+* streaming-kafka-reactive-consumer
+* streaming-kafka-consumer
+
+3. cleanup
 
 [source,bash]
+----
 gradle composeUp
+
+gradle bootRun-kafka-producer
+gradle bootRun-kafka-processor
+gradle bootRun-kafka-reactive-producer
+gradle bootRun-kafka-reactive-consumer
+gradle bootRun-kafka-consumer
+
 gradle composeDown
+gradle --stop
+----
 
 or run integration tests with kafka
 

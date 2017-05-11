@@ -24,7 +24,7 @@ before_install:
   - chmod +x docker-compose
   - sudo mv -f docker-compose /usr/local/bin
 script:
-  - gradle clean build
+  - gradle integrationTests
   - gradle bootRun-service &
   - sleep 10
   - gradle bootRun-client &
