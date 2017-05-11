@@ -1,6 +1,6 @@
 = functional-streaming image:https://travis-ci.org/daggerok/functional-streaming.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/functional-streaming"]
 
-== functional streaming using spring-cloud-reactive-streams
+== functional streaming using spring-cloud-reactive-streams on top of kafka cluster
 
 see https://github.com/daggerok/functional-streaming/tree/master/streaming-kafka-reactive-processor[streaming-kafka-reactive-processor] and https://github.com/daggerok/functional-streaming/tree/master/streaming-kafka-reactive-consumer[streaming-kafka-reactive-consumer] projects
 
