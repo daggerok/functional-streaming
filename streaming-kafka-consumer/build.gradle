@@ -1,8 +1,4 @@
 plugins {
-    id "cn.bestwu.propdeps" version "0.0.10"
-    id "cn.bestwu.propdeps-idea" version "0.0.10"
-    id "cn.bestwu.propdeps-maven" version "0.0.10"
-    id "cn.bestwu.propdeps-eclipse" version "0.0.10"
     id "org.springframework.boot" version "1.5.3.RELEASE"
     id "io.spring.dependency-management" version "1.0.2.RELEASE"
 }
@@ -33,7 +29,6 @@ dependencies {
     compile('daggerok:streaming-support:0.0.2')
     compile('org.springframework.cloud:spring-cloud-stream-binder-kafka')
     runtime("org.springframework.boot:spring-boot-devtools")
-    compileOnly("org.springframework.boot:spring-boot-configuration-processor")
     compileOnly("org.projectlombok:lombok")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }

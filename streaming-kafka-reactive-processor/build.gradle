@@ -28,7 +28,7 @@ dependencyManagement {
 dependencies {
     compile('org.springframework.cloud:spring-cloud-stream-binder-kafka')
     compile('org.springframework.cloud:spring-cloud-stream-rxjava')
-    compile('org.springframework.cloud:spring-cloud-stream-reactive:1.2.2.BUILD-SNAPSHOT')
+    compile('org.springframework.cloud:spring-cloud-stream-reactive')
     compile('io.projectreactor:reactor-core:3.0.5.RELEASE')
     compile('io.netty:netty-all:4.1.2.Final')
     compile('io.projectreactor:reactor-net')
