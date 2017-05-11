@@ -1,0 +1,19 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        messages:
+          destination: messages
+          content-type: application/json
+          # only one processor instance should handle input messages
+          group: messages-processor
+          # we want to not loose any messages in case of zero-instances
+          durable-subscription: messages-processor
+        correctMessages:
+          destination: correctMessages
+          content-type: application/json
+        incorrectMessages:
+          destination: incorrectMessages
+          content-type: application/json
+server:
+  port: 0

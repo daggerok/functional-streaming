@@ -1,3 +1,9 @@
-rootProject.name = 'functional-streaming'
-includeBuild 'streaming-service'
-includeBuild 'streaming-client'
+rootProject.name = "functional-streaming"
+includeBuild "streaming-support"
+includeBuild "streaming-kafka-producer"
+includeBuild "streaming-kafka-processor"
+includeBuild "streaming-kafka-reactive-processor"
+includeBuild "streaming-kafka-reactive-consumer"
+includeBuild "streaming-kafka-consumer"
+includeBuild "streaming-service"
+includeBuild "streaming-client"

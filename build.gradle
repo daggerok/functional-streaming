@@ -10,11 +10,28 @@ plugins {
     id "net.saliman.properties" version "1.4.6"
 }
 
-// inherit tasks from projects
+println "active profile is: $profile"
+
+def libs = [
+        "streaming-support",
+]
+
+tasks.create("install") { task ->
+    libs.each { projectName ->
+        dependsOn gradle.includedBuild(projectName).task(":install")
+    }
+}
+
 def projectNames = [
         "streaming-service",
-        "streaming-client"
-]
+        "streaming-client",
+] + [
+        "streaming-kafka-producer",
+        "streaming-kafka-processor",
+        "streaming-kafka-reactive-processor",
+        "streaming-kafka-reactive-consumer",
+        "streaming-kafka-consumer",
+].findAll{ it.contains(profile) }
 
 // gradle clean build
 def previous = ":clean"
@@ -30,16 +47,19 @@ def previous = ":clean"
             def projectBuild = gradle.includedBuild(projectName)
             def projectTask = projectBuild.task(current)
 
-            dependsOn projectTask
+            dependsOn projectTask, ":install"
 
             if (":clean" == previous) return
-            shouldRunAfter previous
+            shouldRunAfter previous, ":composeUp"
         }
         previous = current
     }
 }
 
-// gradle bootRun-service bootRun-client
+/**
+ * Spring bootRun: gradle composeUp bootRun-kafka-producer
+ */
+
 projectNames.each { projectName ->
 
     def bootRunTaskName = "bootRun"
@@ -49,6 +69,10 @@ projectNames.each { projectName ->
         dependsOn gradle.includedBuild(projectName).task(":$bootRunTaskName")
     }
 }
+
+/**
+ * Docker brokers: gradle test -Penv=rabbitmq
+ */
 
 def dockerCompose = "docker-compose -f $dockerComposeFile"
 
@@ -67,7 +91,15 @@ task composeDown(type: Exec) {
     args "-c", "$dockerCompose down -v"
 }
 
+/**
+ * Integration tests: gradle integrationTests
+ */
+
 task integrationTests(dependsOn: ":test") {
     dependsOn composeUp
     finalizedBy composeDown
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.5'
 }

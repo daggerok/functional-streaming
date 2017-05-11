@@ -15,6 +15,7 @@ repositories {
     mavenCentral()
     maven { url "https://repo.spring.io/snapshot" }
     maven { url "https://repo.spring.io/milestone" }
+    maven { url "https://repo.spring.io/libs-snapshot" }
 }
 
 springBoot {
@@ -23,13 +24,15 @@ springBoot {
 
 dependencyManagement {
     imports {
-        mavenBom "org.springframework.boot:spring-boot-dependencies:2.0.0.BUILD-SNAPSHOT"
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Finchley.BUILD-SNAPSHOT"
+        mavenBom "org.springframework.boot:spring-boot-dependencies:1.5.3.RELEASE"
+        mavenBom "org.springframework.cloud:spring-cloud-stream-dependencies:1.0.4.BUILD-SNAPSHOT"
     }
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-webflux")
+    compile('daggerok:streaming-support:0.0.2')
+    compile('org.springframework.cloud:spring-cloud-stream-binder-kafka')
+//    compile('org.springframework.cloud:spring-cloud-stream-reactive')
     runtime("org.springframework.boot:spring-boot-devtools")
     compileOnly("org.springframework.boot:spring-boot-configuration-processor")
     compileOnly("org.projectlombok:lombok")

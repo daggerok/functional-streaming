@@ -4,6 +4,8 @@ services:
     image: wurstmeister/zookeeper
     ports:
       - 2181:2181
+    networks:
+      - backoffice
   kafka:
     build: .
     ports:
@@ -13,8 +15,16 @@ services:
       KAFKA_CREATE_TOPICS: "test:1:1"
       KAFKA_ZOOKEEPER_CONNECT: zoo:2181
     volumes:
+      - kafka-data:/kafka
       - /var/run/docker.sock:/var/run/docker.sock
     links:
       - zookeeper:zoo
     depends_on:
       - zookeeper
+    networks:
+      - backoffice
+volumes:
+  kafka-data: {}
+networks:
+  backoffice:
+    driver: bridge

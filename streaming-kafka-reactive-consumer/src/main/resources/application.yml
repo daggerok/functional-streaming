@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        reactive-messages:
+          destination: reactiveMessages
+          content-type: application/json
+          # we want to not loose any messages in case of zero-instances
+          durable-subscription: incorrect-messages
+          # only one processor instance should handle input messages
+          group: incorrect-messages
+server:
+  port: 0

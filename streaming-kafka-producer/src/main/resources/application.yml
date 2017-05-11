@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        messages:
+          destination: messages
+          content-type: application/json
+server:
+  port: 0
