@@ -4,6 +4,27 @@
 
 see https://github.com/daggerok/functional-streaming/tree/master/streaming-kafka-reactive-processor[streaming-kafka-reactive-processor] and https://github.com/daggerok/functional-streaming/tree/master/streaming-kafka-reactive-consumer[streaming-kafka-reactive-consumer] projects
 
+in our messaging pipeline we can use Mono / Flux from reactor project, which makes developing streaming cloud native application more exiting!
+
+[source,java]
+----
+  @Output(Processor.OUTPU)
+  @StreamListener(Processor.INPUT)
+  public Flux<Message<String>> correctMessagesReceiver(final Flux<Map<String, String>> payload) {
+
+    return payload.map(Map::entrySet)
+                  .map(Set::iterator)
+                  .filter(Iterator::hasNext)
+                  .map(Iterator::next)
+                  .map(this::doSomeTransformationLogic)
+                  .window(3) // pagination or could be also time interval collector
+                  .flatMap(window -> window.reduce("|", (s1, s2) -> s1 + s2 + "|"))
+                  .map(body -> MessageBuilder.withPayload(body).build());
+  }
+----
+
+right now is only one limitation: spring-cloud-stream doesn't suppotr spring-webflux yet, but I hope It will be changed soon
+
 == build, run, clean
 
 1. bootstrap your message broker
