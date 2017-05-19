@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        correctMessages:
+          destination: correctMessages
+          content-type: application/json
+        incorrectMessages:
+          destination: incorrectMessages
+          content-type: application/json
+        aggregateMessages:
+          destination: aggregateMessages
+          content-type: application/json
+server:
+  port: 0

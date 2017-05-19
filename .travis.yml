@@ -25,12 +25,8 @@ before_install:
   - sudo mv -f docker-compose /usr/local/bin
 script:
   - gradle integrationTests
-  - gradle bootRun-service &
-  - sleep 10
-  - gradle bootRun-client &
-  - sleep 10
-  - echo "you should be abe to see hi"
-  - sleep 5
+  - gradle integrationTests -Penv=kafka
+  - gradle integrationTests -Penv=rabbit
 after_script:
   - gradle --stop
 cache:

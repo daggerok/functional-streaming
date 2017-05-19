@@ -1,0 +1,70 @@
+= functional-streaming image:https://travis-ci.org/daggerok/functional-streaming.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/functional-streaming"]
+
+== functional streaming using spring-cloud-reactive-streams
+
+see https://github.com/daggerok/functional-streaming/tree/master/streaming-reactive-processor[streaming-reactive-processor] and https://github.com/daggerok/functional-streaming/tree/master/streaming-reactive-consumer[streaming-reactive-consumer] projects
+
+in our messaging pipeline we can use Mono / Flux from reactor project, which makes developing streaming cloud native application more exciting!
+
+[source,java]
+----
+  @Output(Processor.OUTPU)
+  @StreamListener(Processor.INPUT)
+  public Flux<Message<String>> correctMessagesReceiver(final Flux<Map<String, String>> payload) {
+
+    return payload.map(Map::entrySet)
+                  .map(Set::iterator)
+                  .filter(Iterator::hasNext)
+                  .map(Iterator::next)
+                  .map(this::doSomeTransformationLogic)
+                  .window(3) // pagination or could be also time interval collector
+                  .flatMap(window -> window.reduce("|", (s1, s2) -> s1 + s2 + "|"))
+                  .map(body -> MessageBuilder.withPayload(body).build());
+  }
+----
+
+right now is only one limitation: spring-cloud-stream doesn't suppotr spring-webflux yet, but I hope It will be changed soon
+
+[source,bash]
+gradle integrationTests -Penv=rabbit
+
+== build, run, clean
+
+1. bootstrap your message broker (docker/docker-compose required)
+2. start apps
+
+* streaming-producer
+* streaming-processor
+* streaming-reactive-producer
+* streaming-reactive-consumer
+* streaming-aggregator
+* streaming-consumer
+
+3. cleanup
+
+[source,bash]
+----
+gradle composeUp
+
+gradle bootRun-producer
+gradle bootRun-processor
+gradle bootRun-reactive-producer
+gradle bootRun-reactive-consumer
+gradle bootRun-aggregator
+gradle bootRun-consumer
+
+gradle composeDown
+gradle --stop
+----
+
+== docker-compose profiles
+
+supported brokers:
+
+. kafka
+. rabbit
+
+run integration tests (if profile is not specified, kafka will be using by default)
+
+[source,bash]
+gradle integrationTests -Penv=rabbit

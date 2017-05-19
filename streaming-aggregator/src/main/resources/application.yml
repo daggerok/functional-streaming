@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: messages
+          content-type: application/json
+          durable-subscription: aggregator
+        output:
+          destination: aggregateMessages
+          content-type: application/json
+server:
+  port: 0

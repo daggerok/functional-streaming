@@ -10,6 +10,15 @@ plugins {
     id "net.saliman.properties" version "1.4.6"
 }
 
+def profiles = ["kafka", "rabbit"]
+
+if (!profiles.contains(profile)) {
+    throw new GradleException("""
+        profile $profile is not supported.
+        supported profiles: $profiles
+    """)
+}
+
 println "active profile is: $profile"
 
 def libs = [
@@ -23,20 +32,18 @@ tasks.create("install") { task ->
 }
 
 def projectNames = [
-        "streaming-service",
-        "streaming-client",
-] + [
-        "streaming-kafka-producer",
-        "streaming-kafka-processor",
-        "streaming-kafka-reactive-processor",
-        "streaming-kafka-reactive-consumer",
-        "streaming-kafka-consumer",
-].findAll{ it.contains(profile) }
+        "streaming-producer",
+        "streaming-processor",
+        "streaming-reactive-processor",
+        "streaming-reactive-consumer",
+        "streaming-aggregator",
+        "streaming-consumer",
+]
 
 // gradle clean build
 def previous = ":clean"
 
-["clean", "assemble", "test", "check" , "build"].each { taskName ->
+["clean", "assemble", "test", "check", "build"].each { taskName ->
 
     tasks.create(taskName) { task ->
 
@@ -71,7 +78,7 @@ projectNames.each { projectName ->
 }
 
 /**
- * Docker brokers: gradle test -Penv=rabbitmq
+ * Docker brokers: gradle test -Penv=rabbit
  */
 
 def dockerCompose = "docker-compose -f $dockerComposeFile"
@@ -81,7 +88,7 @@ task composeUp(type: Exec) {
     args "-c", """
                     $dockerCompose down -v \
                     && $dockerCompose up -d --build \
-                    && echo "waiting 15 seconds for kafka bootstrap..." \
+                    && echo "waiting 15 seconds for $profile bootstrap..." \
                     && sleep 15
                """
 }
@@ -101,5 +108,5 @@ task integrationTests(dependsOn: ":test") {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '3.5'
+    gradleVersion = "3.5"
 }
