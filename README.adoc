@@ -35,10 +35,11 @@ gradle integrationTests -Penv=rabbit
 
 * streaming-producer
 * streaming-processor
-* streaming-reactive-producer
-* streaming-reactive-consumer
 * streaming-aggregator
 * streaming-consumer
+* streaming-reactive-producer
+* streaming-reactive-processor
+* streaming-reactive-consumer
 
 3. cleanup
 
@@ -48,10 +49,11 @@ gradle composeUp
 
 gradle bootRun-producer
 gradle bootRun-processor
-gradle bootRun-reactive-producer
-gradle bootRun-reactive-consumer
 gradle bootRun-aggregator
 gradle bootRun-consumer
+gradle bootRun-reactive-producer
+gradle bootRun-reactive-processor
+gradle bootRun-reactive-consumer
 
 gradle composeDown
 gradle --stop
