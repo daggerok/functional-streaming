@@ -1,6 +1,6 @@
 = functional-streaming image:https://travis-ci.org/daggerok/functional-streaming.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/functional-streaming"]
 
-== functional streaming using spring-cloud-reactive-streams
+== functional streaming using spring cloud (reactive) streams, schema registry, avro
 
 see https://github.com/daggerok/functional-streaming/tree/master/streaming-reactive-processor[streaming-reactive-processor] and https://github.com/daggerok/functional-streaming/tree/master/streaming-reactive-consumer[streaming-reactive-consumer] projects
 
