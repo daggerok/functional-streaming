@@ -30,19 +30,9 @@ gradle integrationTests -Penv=rabbit
 
 == build, run, clean
 
-1. bootstrap your message broker (docker/docker-compose required)
-2. start apps
-
-* streaming-producer
-* streaming-processor
-* streaming-aggregator
-* streaming-consumer
-* streaming-reactive-producer
-* streaming-reactive-aggregator
-* streaming-reactive-processor
-* streaming-reactive-consumer
-
-3. cleanup
+. bootstrap your message broker (docker/docker-compose required)
+. start apps
+. cleanup
 
 [source,bash]
 ----
