@@ -29,6 +29,7 @@ public class StreamingReactiveConsumerApplication {
   public void reactiveEndMessagesReceiver(final Flux<Message<String>> payload) {
 
     payload.map(Message::getPayload)
+           .map(String::toUpperCase)
            .subscribe(message -> log.info("reactive end: {}", message));
   }
 

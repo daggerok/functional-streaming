@@ -32,6 +32,7 @@ tasks.create("install") { task ->
 }
 
 def projectNames = [
+        "streaming-schema-registry-server",
         "streaming-producer",
         "streaming-processor",
         "streaming-aggregator",

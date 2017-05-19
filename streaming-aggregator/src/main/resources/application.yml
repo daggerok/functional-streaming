@@ -6,10 +6,10 @@ spring:
           destination: errors
         input:
           destination: messages
-          content-type: application/json
+#          content-type: application/json
           durable-subscription: aggregator
         output:
           destination: aggregateMessages
-          content-type: application/json
+#          content-type: application/json
 server:
   port: 0

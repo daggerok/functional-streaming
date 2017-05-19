@@ -6,6 +6,6 @@ spring:
           destination: errors
         output:
           destination: reactiveAggrigate
-          content-type: application/json
+#          content-type: application/json
 server:
   port: 0

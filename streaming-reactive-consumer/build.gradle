@@ -1,5 +1,7 @@
 buildscript {
     ext {
+        schemaRegistryVersion = "1.2.2.RELEASE"
+        avroVersion = "1.8.1"
         environmentFileDir = "../profiles"
         propertiesPluginEnvironmentNameProperty = "env"
     }
@@ -36,6 +38,8 @@ dependencyManagement {
 
 dependencies {
     compile "org.springframework.cloud:spring-cloud-stream-binder-$profile",
+            "org.springframework.cloud:spring-cloud-stream-schema:$schemaRegistryVersion",
+            "org.apache.avro:avro:$avroVersion",
             "org.springframework.cloud:spring-cloud-stream-rxjava",
             "org.springframework.cloud:spring-cloud-stream-reactive",
             "io.projectreactor:reactor-core:3.0.5.RELEASE",

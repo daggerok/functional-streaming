@@ -1,5 +1,7 @@
 buildscript {
     ext {
+        schemaRegistryVersion = "1.2.2.RELEASE"
+        avroVersion = "1.8.1"
         environmentFileDir = "../profiles"
         propertiesPluginEnvironmentNameProperty = "env"
     }
@@ -36,7 +38,9 @@ dependencyManagement {
 
 dependencies {
     compile "daggerok:streaming-support:0.0.2",
-            "org.springframework.cloud:spring-cloud-stream-binder-$profile"
+            "org.springframework.cloud:spring-cloud-stream-binder-$profile",
+            "org.springframework.cloud:spring-cloud-stream-schema:$schemaRegistryVersion",
+            "org.apache.avro:avro:$avroVersion"
     runtime("org.springframework.boot:spring-boot-devtools")
     compileOnly("org.projectlombok:lombok")
     testCompile("org.springframework.boot:spring-boot-starter-test")

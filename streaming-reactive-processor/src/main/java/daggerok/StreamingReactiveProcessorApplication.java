@@ -60,7 +60,7 @@ public class StreamingReactiveProcessorApplication {
   public Flux<Message<String>> reactiveProcessor(final Flux<Message<String>> numbers) {
 
     return numbers.map(Message::getPayload)
-                  .window(Duration.ofSeconds(5))
+                  .window(Duration.ofSeconds(10), Duration.ofSeconds(5))
                   .flatMap(w -> w.reduce("|-> ", (s1, s2) -> s1 + s2 + " -> "))
                   .map(body -> MessageBuilder.withPayload(body)
                                              .build());

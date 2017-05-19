@@ -6,10 +6,10 @@ spring:
           destination: errors
         input:
           destination: reactiveAggrigate
-          content-type: application/json
+#          content-type: application/json
           durable-subscription: reactive-aggregator
         output:
           destination: reactiveProcess
-          content-type: application/json
+#          content-type: application/json
 server:
   port: 0

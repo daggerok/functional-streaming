@@ -31,7 +31,7 @@ public class StreamingReactiveProducerApplication {
       output.send(MessageBuilder.withPayload("up and running...")
                                 .build());
       */
-      Flux.interval(Duration.ofMillis(999))
+      Flux.interval(Duration.ofSeconds(1))
           .subscribe(s -> output.send(MessageBuilder.withPayload("" + new Random().nextInt(20))
                                                     .build()));
     }
