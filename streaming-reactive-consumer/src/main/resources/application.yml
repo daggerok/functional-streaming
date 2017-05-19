@@ -2,6 +2,8 @@ spring:
   cloud:
     stream:
       bindings:
+        error:
+          destination: errors
         reactive-messages:
           destination: reactiveMessages
           content-type: application/json

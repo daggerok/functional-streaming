@@ -19,4 +19,9 @@ public interface Messages {
 
   @Input(AGGREGATE_MESSAGES)
   SubscribableChannel aggregateMessages();
+
+  String ERR = "errors";
+
+  @Input(ERR)
+  SubscribableChannel errors();
 }

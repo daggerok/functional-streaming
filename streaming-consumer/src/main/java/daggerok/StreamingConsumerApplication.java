@@ -34,6 +34,11 @@ public class StreamingConsumerApplication {
     log.info("received aggregate: {}", aggregateMessage.getPayload());
   }
 
+  @ServiceActivator(inputChannel = Messages.ERR)
+  public void errorsReceiver(final Message<?> err) {
+    log.info("err\n{}\n{}", err.getPayload(), err.getHeaders());
+  }
+
   public static void main(String[] args) {
     SpringApplication.run(StreamingConsumerApplication.class, args);
   }

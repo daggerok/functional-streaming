@@ -2,6 +2,8 @@ spring:
   cloud:
     stream:
       bindings:
+        error:
+          destination: errors
         messages:
           destination: messages
           content-type: application/json
