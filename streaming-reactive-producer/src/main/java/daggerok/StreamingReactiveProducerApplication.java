@@ -27,13 +27,13 @@ public class StreamingReactiveProducerApplication {
     final MessageChannel output;
 
     public void startSending() {
-
+      /*
       output.send(MessageBuilder.withPayload("up and running...")
                                 .build());
-
+      */
       Flux.interval(Duration.ofMillis(999))
           .subscribe(s -> output.send(MessageBuilder.withPayload("" + new Random().nextInt(20))
-                                              .build()));
+                                                    .build()));
     }
   }
 
