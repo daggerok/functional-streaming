@@ -13,11 +13,11 @@ spring:
           content-type: application/json
           durable-subscription: incorrect-messages
           group: incorrect-messages
-        reactive-start:
-          destination: reactiveStart
+        reactive-process:
+          destination: reactiveProcess
           content-type: application/json
-          group: reactive-start
-          durable-subscription: reactive-start
+          group: reactive-process
+          durable-subscription: reactive-process
         # out
         reactive-messages:
           destination: reactiveMessages

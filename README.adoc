@@ -38,6 +38,7 @@ gradle integrationTests -Penv=rabbit
 * streaming-aggregator
 * streaming-consumer
 * streaming-reactive-producer
+* streaming-reactive-aggregator
 * streaming-reactive-processor
 * streaming-reactive-consumer
 
@@ -52,6 +53,7 @@ gradle bootRun-processor
 gradle bootRun-aggregator
 gradle bootRun-consumer
 gradle bootRun-reactive-producer
+gradle bootRun-reactive-aggregator
 gradle bootRun-reactive-processor
 gradle bootRun-reactive-consumer
 

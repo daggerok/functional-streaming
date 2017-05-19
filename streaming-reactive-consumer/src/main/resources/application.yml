@@ -14,9 +14,5 @@ spring:
           content-type: application/json
           durable-subscription: reactive-end
           group: reactive-end
-        error:
-          destination: error
-          content-type: application/json
-          durable-subscription: error
 server:
   port: 0

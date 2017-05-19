@@ -14,9 +14,4 @@ public interface Messages {
 
   @Input(REACTIVE_END)
   MessageChannel reactiveEnd();
-
-  String ERR = "error";
-
-  @Input(ERR)
-  MessageChannel error();
 }

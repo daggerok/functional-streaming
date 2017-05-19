@@ -56,7 +56,7 @@ public class StreamingReactiveProcessorApplication {
   }
 
   @Output(Messages.REACTIVE_END)
-  @StreamListener(Messages.REACTIVE_START)
+  @StreamListener(Messages.REACTIVE_PROCESS)
   public Flux<Message<String>> reactiveProcessor(final Flux<Message<String>> numbers) {
 
     return numbers.map(Message::getPayload)

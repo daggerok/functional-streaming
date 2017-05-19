@@ -3,7 +3,7 @@ spring:
     stream:
       bindings:
         output:
-          destination: reactiveStart
+          destination: reactiveAggrigate
           content-type: application/json
 server:
   port: 0

@@ -24,10 +24,10 @@ public interface Messages {
 
   /** reactive producer */
 
-  String REACTIVE_START = "reactiveStart";
+  String REACTIVE_PROCESS = "reactiveProcess";
 
-  @Input(REACTIVE_START)
-  SubscribableChannel reactiveStart();
+  @Input(REACTIVE_PROCESS)
+  SubscribableChannel reactiveProcess();
 
   String REACTIVE_END = "reactiveEnd";
 
