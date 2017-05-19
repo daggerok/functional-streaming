@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: reactiveStart
+          content-type: application/json
+server:
+  port: 0

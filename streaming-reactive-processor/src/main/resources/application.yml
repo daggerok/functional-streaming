@@ -2,22 +2,28 @@ spring:
   cloud:
     stream:
       bindings:
+        # in
         correct-messages:
           destination: correctMessages
           content-type: application/json
-          # we want to not loose any messages in case of zero-instances
           durable-subscription: correct-messages
-          # only one processor instance should handle input messages
           group: correct-messages
         incorrect-messages:
           destination: incorrectMessages
           content-type: application/json
-          # we want to not loose any messages in case of zero-instances
           durable-subscription: incorrect-messages
-          # only one processor instance should handle input messages
           group: incorrect-messages
+        reactive-start:
+          destination: reactiveStart
+          content-type: application/json
+          group: reactive-start
+          durable-subscription: reactive-start
+        # out
         reactive-messages:
           destination: reactiveMessages
+          content-type: application/json
+        reactive-end:
+          destination: reactiveEnd
           content-type: application/json
 server:
   port: 0

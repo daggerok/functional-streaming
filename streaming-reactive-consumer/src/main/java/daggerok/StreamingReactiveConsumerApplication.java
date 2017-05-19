@@ -25,6 +25,19 @@ public class StreamingReactiveConsumerApplication {
            .subscribe(message -> log.info("received reactive message: {}", message));
   }
 
+  @StreamListener(Messages.REACTIVE_END)
+  public void reactiveEndMessagesReceiver(final Flux<Message<String>> payload) {
+
+    payload.map(Message::getPayload)
+           .subscribe(message -> log.info("reactive end: {}", message));
+  }
+
+  @StreamListener(Messages.ERR)
+  public void errorReceiver(final Flux<Object> payload) {
+
+    payload.subscribe(obj -> log.info("err: {}", obj));
+  }
+
   public static void main(String[] args) {
     SpringApplication.run(StreamingReactiveConsumerApplication.class, args);
   }

@@ -34,10 +34,11 @@ tasks.create("install") { task ->
 def projectNames = [
         "streaming-producer",
         "streaming-processor",
-        "streaming-reactive-processor",
-        "streaming-reactive-consumer",
         "streaming-aggregator",
         "streaming-consumer",
+        "streaming-reactive-producer",
+        "streaming-reactive-processor",
+        "streaming-reactive-consumer",
 ]
 
 // gradle clean build

@@ -55,6 +55,17 @@ public class StreamingReactiveProcessorApplication {
            .subscribe(r -> log.info("{} wrong messages received.", r));
   }
 
+  @Output(Messages.REACTIVE_END)
+  @StreamListener(Messages.REACTIVE_START)
+  public Flux<Message<String>> reactiveProcessor(final Flux<Message<String>> numbers) {
+
+    return numbers.map(Message::getPayload)
+                  .window(Duration.ofSeconds(5))
+                  .flatMap(w -> w.reduce("|-> ", (s1, s2) -> s1 + s2 + " -> "))
+                  .map(body -> MessageBuilder.withPayload(body)
+                                             .build());
+  }
+
   public static void main(String[] args) {
     SpringApplication.run(StreamingReactiveProcessorApplication.class, args);
   }

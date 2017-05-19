@@ -9,4 +9,14 @@ public interface Messages {
 
   @Input(REACTIVE_MESSAGE)
   MessageChannel reactiveMessages();
+
+  String REACTIVE_END = "reactiveEnd";
+
+  @Input(REACTIVE_END)
+  MessageChannel reactiveEnd();
+
+  String ERR = "error";
+
+  @Input(ERR)
+  MessageChannel error();
 }
