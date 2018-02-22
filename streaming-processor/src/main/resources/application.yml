@@ -17,5 +17,12 @@ spring:
         incorrectMessages:
           destination: incorrectMessages
 #          content-type: application/json
+  kafka:
+    consumer:
+      group-id: streaming-processor
+      auto-offset-reset: earliest
+  output:
+    ansi:
+      enabled: always
 server:
   port: 0

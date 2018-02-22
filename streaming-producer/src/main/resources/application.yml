@@ -11,5 +11,12 @@ spring:
 #          producer:
 #            partition-key-expression: payload.id
 #            partition-count: 10
+  kafka:
+    consumer:
+      group-id: streaming-producer
+      auto-offset-reset: earliest
+  output:
+    ansi:
+      enabled: always
 server:
   port: 0

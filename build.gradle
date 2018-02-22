@@ -1,17 +1,19 @@
 buildscript {
     ext {
-        environmentFileDir = "profiles"
-        propertiesPluginEnvironmentNameProperty = "env"
+        //environmentFileDir = "profiles"
+        //propertiesPluginEnvironmentNameProperty = "env"
     }
 }
 
 plugins {
     id "idea"
-    id "net.saliman.properties" version "1.4.6"
+    //id "base"
+    //id "net.saliman.properties" version "1.4.6"
+    id "com.avast.gradle.docker-compose" version "0.6.13"
 }
 
+def profile = project.hasProperty("profile") ? project.getProperty("profile") : "rabbit"
 def profiles = ["kafka", "rabbit"]
-
 if (!profiles.contains(profile)) {
     throw new GradleException("""
         profile $profile is not supported.
@@ -60,7 +62,7 @@ def previous = ":clean"
             dependsOn projectTask, ":install"
 
             if (":clean" == previous) return
-            shouldRunAfter previous, ":composeUp"
+            shouldRunAfter previous, composeUp
         }
         previous = current
     }
@@ -83,27 +85,21 @@ projectNames.each { projectName ->
 /**
  * Docker brokers: gradle test -Penv=rabbit
  */
-
-def dockerCompose = "docker-compose -f $dockerComposeFile"
-
-task composeUp(type: Exec) {
-    executable "bash"
-    args "-c", """
-                    $dockerCompose down -v \
-                    && $dockerCompose up -d --build \
-                    && echo "waiting 15 seconds for $profile bootstrap..." \
-                    && sleep 15
-               """
+dockerCompose {
+    useComposeFiles = [project.file("docker/${profile}/docker-compose.yaml")]
+    // captureContainersOutput = true
+    captureContainersOutput = false
+    stopContainers = true
+    removeContainers = true
+    removeImages = "Local"
+    removeVolumes = true
+    removeOrphans = true
+    forceRecreate = true
+    waitForTcpPorts = false
+    projectName = project.name
 }
 
-task composeDown(type: Exec) {
-    executable "bash"
-    args "-c", "$dockerCompose down -v"
-}
-
-/**
- * Integration tests: gradle integrationTests
- */
+composeUp.dependsOn assemble
 
 task integrationTests(dependsOn: ":test") {
     dependsOn composeUp

@@ -1,0 +1,23 @@
+version: "2.1"
+
+services:
+
+  kafka:
+    image: daggerok/kafka:v7
+    environment:
+      KAFKA_TOPICS: errors,messages,aggregateMessages,correctMessages,incorrectMessages,messages-processor,reactiveAggrigate,reactive-aggregator,reactiveProcess,reactive-end,reactiveEnd,incorrect-messages,reactiveMessages,reactive-process
+    ports:
+      - "8080:8080"
+      - "9092:9092"
+    volumes:
+      - "kafka-data:/home/appuser"
+      - "kafka-data:/var"
+      - "kafka-data:/tmp"
+    networks: [backing-services]
+
+volumes:
+  kafka-data: {}
+
+networks:
+  backing-services:
+    driver: bridge

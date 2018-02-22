@@ -2,16 +2,20 @@ buildscript {
     ext {
         schemaRegistryVersion = "1.2.2.RELEASE"
         avroVersion = "1.8.1"
-        environmentFileDir = "../profiles"
-        propertiesPluginEnvironmentNameProperty = "env"
+        //environmentFileDir = "../profiles"
+        //propertiesPluginEnvironmentNameProperty = "env"
+        profile = project.hasProperty("profile") ? project.getProperty("profile") : "rabbit"
+        springBootVersion = "1.5.10.RELEASE"
+        springCloudVersion = "Edgware.SR2"
+        springCloudStreamVersion = "Chelsea.SR2"
     }
 }
 
 plugins {
     id "idea"
-    id "net.saliman.properties" version "1.4.6"
-    id "org.springframework.boot" version "1.5.3.RELEASE"
-    id "io.spring.dependency-management" version "1.0.2.RELEASE"
+    //id "net.saliman.properties" version "1.4.6"
+    id "org.springframework.boot" version "1.5.10.RELEASE"
+    id "io.spring.dependency-management" version "1.0.4.RELEASE"
 }
 
 version "0.0.1"
@@ -31,8 +35,8 @@ springBoot {
 
 dependencyManagement {
     imports {
-        mavenBom "org.springframework.boot:spring-boot-dependencies:1.5.3.RELEASE"
-        mavenBom "org.springframework.cloud:spring-cloud-stream-dependencies:Chelsea.BUILD-SNAPSHOT"
+        mavenBom "org.springframework.boot:spring-boot-dependencies:$springBootVersion"
+        mavenBom "org.springframework.cloud:spring-cloud-stream-dependencies:$springCloudStreamVersion"
     }
 }
 

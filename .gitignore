@@ -6,6 +6,8 @@
 *.ipr
 *.log
 .DS_Store
+out
+target
 
 ### STS ###
 .apt_generated

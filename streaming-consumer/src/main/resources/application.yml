@@ -13,5 +13,12 @@ spring:
         aggregateMessages:
           destination: aggregateMessages
 #          content-type: application/json
+  kafka:
+    consumer:
+      group-id: streaming-consumer
+      auto-offset-reset: earliest
+  output:
+    ansi:
+      enabled: always
 server:
   port: 0

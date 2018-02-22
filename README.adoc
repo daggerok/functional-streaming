@@ -1,6 +1,7 @@
 = functional-streaming image:https://travis-ci.org/daggerok/functional-streaming.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/functional-streaming"]
 
 == functional streaming using spring cloud (reactive) streams, schema registry, avro
+NOTE: for dome reason during time project configuration for kafka stops working... use rabbit profile for now
 
 see https://github.com/daggerok/functional-streaming/tree/master/streaming-reactive-processor[streaming-reactive-processor] and https://github.com/daggerok/functional-streaming/tree/master/streaming-reactive-consumer[streaming-reactive-consumer] projects
 

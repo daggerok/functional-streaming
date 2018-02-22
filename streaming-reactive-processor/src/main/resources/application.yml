@@ -26,5 +26,12 @@ spring:
         reactive-end:
           destination: reactiveEnd
 #          content-type: application/json
+  kafka:
+    consumer:
+      group-id: streaming-reactive-processor
+      auto-offset-reset: earliest
+  output:
+    ansi:
+      enabled: always
 server:
   port: 0

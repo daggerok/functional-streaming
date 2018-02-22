@@ -11,5 +11,12 @@ spring:
         output:
           destination: reactiveProcess
 #          content-type: application/json
+  kafka:
+    consumer:
+      group-id: streaming-reactive-aggregator
+      auto-offset-reset: earliest
+  output:
+    ansi:
+      enabled: always
 server:
   port: 0

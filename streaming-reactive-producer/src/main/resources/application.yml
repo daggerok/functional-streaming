@@ -7,5 +7,12 @@ spring:
         output:
           destination: reactiveAggrigate
 #          content-type: application/json
+  kafka:
+    consumer:
+      group-id: streaming-reactive-producer
+      auto-offset-reset: earliest
+  output:
+    ansi:
+      enabled: always
 server:
   port: 0

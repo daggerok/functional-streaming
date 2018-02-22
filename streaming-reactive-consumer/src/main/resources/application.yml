@@ -16,5 +16,12 @@ spring:
 #          content-type: application/json
           durable-subscription: reactive-end
           group: reactive-end
+  kafka:
+    consumer:
+      group-id: streaming-reactive-consumer
+      auto-offset-reset: earliest
+  output:
+    ansi:
+      enabled: always
 server:
   port: 0

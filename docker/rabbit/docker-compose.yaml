@@ -1,0 +1,20 @@
+version: "2.1"
+
+services:
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: healthcheck/rabbitmq:alpine
+    ports:
+    - 15672:15672
+    - 61613:61613
+    volumes: ["rabbitmq-data:/var/lib/rabbitmq"]
+    networks:
+    - backing-services
+
+volumes:
+  rabbitmq-data: {}
+
+networks:
+  backing-services:
+    driver: bridge
