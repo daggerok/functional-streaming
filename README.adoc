@@ -62,3 +62,8 @@ run integration tests (if profile is not specified, kafka will be using by defau
 
 [source,bash]
 gradle integrationTests -Penv=rabbit
+
+other repositories:
+
+. link:https://github.com/daggerok/serverless-examples[Serveless examples (spring-cloud-functions)]
+
