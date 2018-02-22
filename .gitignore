@@ -1,6 +1,5 @@
 ### IntelliJ IDEA ###
 .gradle
-gradle*
 .idea
 *.iws
 *.iml

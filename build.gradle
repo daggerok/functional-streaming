@@ -111,5 +111,7 @@ task integrationTests(dependsOn: ":test") {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = "3.5"
+    gradleVersion = "4.6-rc-2"
 }
+
+defaultTasks "integrationTests"
