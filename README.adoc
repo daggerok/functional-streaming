@@ -1,4 +1,5 @@
 = functional-streaming image:https://travis-ci.org/daggerok/functional-streaming.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/functional-streaming"]
+not fucking working...
 
 == functional streaming using spring cloud (reactive) streams, schema registry, avro
 

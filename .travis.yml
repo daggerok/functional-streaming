@@ -12,6 +12,7 @@ before_install:
 - source <(curl -s https://raw.githubusercontent.com/daggerok/bash-functions/master/main.bash)
 - stop_any 2181 9092 8080 5432 80 5673 15672 61613
 script:
+- bash gradlew composeUp
 - bash gradlew
 cache:
   directories:

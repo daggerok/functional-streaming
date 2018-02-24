@@ -1,20 +1,41 @@
 version: "2.1"
-
 services:
 
-  rabbitmq:
-    container_name: rabbitmq
-    image: healthcheck/rabbitmq:alpine
+  kafka:
+    container_name: kafka
+    image: daggerok/kafka:v9
+    environment:
+      ZOOKEEPER_PORT: 2181
+      ZOOKEEPER_DIR: /home/appuser
+      KAFKA_PORT: 9092
+      KAFKA_TOPICS: errors,messages,aggregateMessages,correctMessages,incorrectMessages,messages-processor,reactiveAggrigate,reactive-aggregator,reactiveProcess,reactive-end,reactiveEnd,incorrect-messages,reactiveMessages,reactive-process
+      HTTP_PORT: 8080
+      HTTP_CONTEXT: /
     ports:
-    - "5672:5672"
-    - "15672:15672"
-    - "61613:61613"
-    volumes: ["rabbitmq-data:/var/lib/rabbitmq"]
-    networks:
-    - backing-services
+    - "2181:2181"
+    - "9092:9092"
+    volumes:
+    - "kafka-data:/home"
+    networks: [backing-services]
+
+#  zookeeper:
+#    container_name: zookeeper
+#    image: wurstmeister/zookeeper:3.4.6
+#    ports: ["2181:2181"]
+#  kafka:
+#    container_name: kafka
+#    image: wurstmeister/kafka:1.0.0
+#    depends_on: [zookeeper]
+#    links: [zookeeper]
+#    environment:
+#      KAFKA_ADVERTISED_HOST_NAME: kafka
+#      KAFKA_ADVERTISED_PORT: 9092
+#      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+#      KAFKA_CREATE_TOPICS: errors:1:1,messages:1:1,aggregateMessages:1:1,correctMessages:1:1,incorrectMessages:1:1,messages-processor:1:1,reactiveAggrigate:1:1,reactive-aggregator:1:1,reactiveProcess:1:1,reactive-end:1:1,reactiveEnd:1:1,incorrect-messages:1:1,reactiveMessages:1:1,reactive-process:1:1
+#    networks: [backing-services]
 
 volumes:
-  rabbitmq-data: {}
+  kafka-data: {}
 
 networks:
   backing-services:
