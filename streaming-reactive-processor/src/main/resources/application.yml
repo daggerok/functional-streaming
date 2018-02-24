@@ -7,29 +7,20 @@ spring:
         # in
         correct-messages:
           destination: correctMessages
-#          content-type: application/json
           durable-subscription: correct-messages
           group: correct-messages
         incorrect-messages:
           destination: incorrectMessages
-#          content-type: application/json
           durable-subscription: incorrect-messages
           group: incorrect-messages
         reactive-process:
           destination: reactiveProcess
-#          content-type: application/json
           durable-subscription: reactive-process
         # out
         reactive-messages:
           destination: reactiveMessages
-#          content-type: application/json
         reactive-end:
           destination: reactiveEnd
-#          content-type: application/json
-  kafka:
-    consumer:
-      group-id: streaming-reactive-processor
-      auto-offset-reset: earliest
   output:
     ansi:
       enabled: always

@@ -6,15 +6,9 @@ spring:
           destination: errors
         input:
           destination: reactiveAggrigate
-#          content-type: application/json
           durable-subscription: reactive-aggregator
         output:
           destination: reactiveProcess
-#          content-type: application/json
-  kafka:
-    consumer:
-      group-id: streaming-reactive-aggregator
-      auto-offset-reset: earliest
   output:
     ansi:
       enabled: always

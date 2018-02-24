@@ -1,7 +1,6 @@
 = functional-streaming image:https://travis-ci.org/daggerok/functional-streaming.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/functional-streaming"]
 
 == functional streaming using spring cloud (reactive) streams, schema registry, avro
-NOTE: for dome reason during time project configuration for kafka stops working... use rabbit profile for now
 
 see https://github.com/daggerok/functional-streaming/tree/master/streaming-reactive-processor[streaming-reactive-processor] and https://github.com/daggerok/functional-streaming/tree/master/streaming-reactive-consumer[streaming-reactive-consumer] projects
 
@@ -24,14 +23,11 @@ in our messaging pipeline we can use Mono / Flux from reactor project, which mak
   }
 ----
 
-right now is only one limitation: spring-cloud-stream doesn't suppotr spring-webflux yet, but I hope It will be changed soon
-
-[source,bash]
-gradle integrationTests -Penv=rabbit
+right now is only one limitation: spring-cloud-stream doesn't suppotr spring-webflux yet, but I hope It will be changed soon (plus see streaming-reactive-*)
 
 == build, run, clean
 
-. bootstrap your message broker (docker/docker-compose required)
+. bootstrap your message broker (docker-compose required)
 . start apps
 . cleanup
 
@@ -52,19 +48,10 @@ gradle composeDown
 gradle --stop
 ----
 
-== docker-compose profiles
-
-supported brokers:
-
-. kafka
-. rabbit
-
-run integration tests (if profile is not specified, kafka will be using by default)
-
+.run integration tests
 [source,bash]
-gradle integrationTests -Penv=rabbit
+gradle integrationTests
 
 other repositories:
 
 . link:https://github.com/daggerok/serverless-examples[Serveless examples (spring-cloud-functions)]
-

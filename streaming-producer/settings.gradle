@@ -1,1 +1,2 @@
 // gradle includeBuild requires settings.gradle file
+includeBuild "../streaming-support"

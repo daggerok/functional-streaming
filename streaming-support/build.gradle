@@ -1,16 +1,7 @@
 plugins {
     id "java"
     id "maven"
-    id "io.spring.dependency-management" version "1.0.2.RELEASE"
 }
 
-version "0.0.2"
 group "daggerok"
-sourceCompatibility = JavaVersion.VERSION_1_8
-
-repositories {
-    mavenCentral()
-    maven { url "https://repo.spring.io/snapshot" }
-    maven { url "https://repo.spring.io/milestone" }
-    maven { url "https://repo.spring.io/libs-snapshot" }
-}
+version "0.0.2"

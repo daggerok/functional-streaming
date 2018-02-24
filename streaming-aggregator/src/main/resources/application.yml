@@ -5,18 +5,12 @@ spring:
         error:
           destination: errors
         input:
-          consumer.headerMode: raw
+          #consumer.headerMode: raw
           destination: messages
-#          content-type: application/json
           durable-subscription: aggregator
         output:
-          producer.headerMode: raw
+          #producer.headerMode: raw
           destination: aggregateMessages
-#          content-type: application/json
-  kafka:
-    consumer:
-      group-id: streaming-aggregator
-      auto-offset-reset: earliest
   output:
     ansi:
       enabled: always

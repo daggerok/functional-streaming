@@ -6,15 +6,6 @@ spring:
           destination: errors
         messages:
           destination: messages
-#          content-type: application/json
-#          # consumers: spring.cloud.stream.bindings.messages.group: <some-group>
-#          producer:
-#            partition-key-expression: payload.id
-#            partition-count: 10
-  kafka:
-    consumer:
-      group-id: streaming-producer
-      auto-offset-reset: earliest
   output:
     ansi:
       enabled: always

@@ -6,20 +6,14 @@ spring:
           destination: errors
         reactive-messages:
           destination: reactiveMessages
-#          content-type: application/json
           # we want to not loose any messages in case of zero-instances
           durable-subscription: incorrect-messages
           # only one processor instance should handle input messages
           group: incorrect-messages
         reactive-end:
           destination: reactiveEnd
-#          content-type: application/json
           durable-subscription: reactive-end
           group: reactive-end
-  kafka:
-    consumer:
-      group-id: streaming-reactive-consumer
-      auto-offset-reset: earliest
   output:
     ansi:
       enabled: always

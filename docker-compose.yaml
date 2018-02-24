@@ -6,8 +6,9 @@ services:
     container_name: rabbitmq
     image: healthcheck/rabbitmq:alpine
     ports:
-    - 15672:15672
-    - 61613:61613
+    - "5672:5672"
+    - "15672:15672"
+    - "61613:61613"
     volumes: ["rabbitmq-data:/var/lib/rabbitmq"]
     networks:
     - backing-services

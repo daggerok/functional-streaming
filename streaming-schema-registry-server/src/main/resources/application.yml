@@ -4,7 +4,3 @@ spring:
   output:
     ansi:
       enabled: always
-  kafka:
-    consumer:
-      group-id: streaming-schema-registry-server
-      auto-offset-reset: earliest
