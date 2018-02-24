@@ -5,10 +5,12 @@ spring:
         error:
           destination: errors
         input:
+          consumer.headerMode: raw
           destination: messages
 #          content-type: application/json
           durable-subscription: aggregator
         output:
+          producer.headerMode: raw
           destination: aggregateMessages
 #          content-type: application/json
   kafka:

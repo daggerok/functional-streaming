@@ -3,14 +3,20 @@ spring:
     stream:
       bindings:
         error:
+          consumer.headerMode: raw
+          producer.headerMode: raw
           destination: errors
         output:
+          consumer.headerMode: raw
+          producer.headerMode: raw
           destination: reactiveAggrigate
 #          content-type: application/json
   kafka:
     consumer:
       group-id: streaming-reactive-producer
       auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
   output:
     ansi:
       enabled: always
