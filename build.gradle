@@ -41,7 +41,7 @@ def projectNames = [
         "streaming-consumer",
         "streaming-reactive-producer",
         "streaming-reactive-aggregator",
-        "streaming-reactive-processor",
+//        "streaming-reactive-processor",
         "streaming-reactive-consumer",
 ]
 
@@ -61,8 +61,13 @@ def previous = ":clean"
 
             dependsOn projectTask, ":install"
 
+            if (":test" == current || ":bootRun" == current) {
+                dependsOn "composeUp"
+                shouldRunAfter "composeUp"
+            }
+
             if (":clean" == previous) return
-            shouldRunAfter previous, composeUp
+            shouldRunAfter previous
         }
         previous = current
     }
@@ -78,7 +83,7 @@ projectNames.each { projectName ->
     def taskName = projectName.replace("streaming", bootRunTaskName)
 
     tasks.create(taskName) { task ->
-        dependsOn gradle.includedBuild(projectName).task(":$bootRunTaskName")
+        dependsOn "composeUp", gradle.includedBuild(projectName).task(":$bootRunTaskName")
     }
 }
 
@@ -101,13 +106,14 @@ dockerCompose {
 
 composeUp.dependsOn assemble
 
-task integrationTests(dependsOn: ":test") {
-    dependsOn composeUp
-    finalizedBy composeDown
+task integrationTests {
+    dependsOn "composeUp"
+    shouldRunAfter "composeUp"
+    finalizedBy "composeDown"
 }
 
 task wrapper(type: Wrapper) {
     gradleVersion = "4.6-rc-2"
 }
 
-defaultTasks "integrationTests"
+defaultTasks "assemble", "composeUp", "test"
